@@ -1,3 +1,4 @@
+"use client"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import Step1 from '@/components/steps/step-1'
@@ -31,6 +32,8 @@ export default function MessageForm( { setMessage, setActiveTab, tabsRef }: Mess
     tarjetas: [''],
     retrospectiva: ''
   });
+
+  const totalSteps = 3
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, day?: string) => {
     const { name, value } = e.target
@@ -83,9 +86,11 @@ export default function MessageForm( { setMessage, setActiveTab, tabsRef }: Mess
   `
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if(currentStep === 4){
+  const handleNext = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1)
+    }
+    if (currentStep === 3) {
       setMessage(generateMessage())
       setActiveTab('generated')
       if (tabsRef.current) {
@@ -93,6 +98,13 @@ export default function MessageForm( { setMessage, setActiveTab, tabsRef }: Mess
       }
     }
   }
+
+  const handlePrevious = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1)
+    }
+  }
+
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -106,25 +118,17 @@ export default function MessageForm( { setMessage, setActiveTab, tabsRef }: Mess
     }
   }
 
-  let nextButton = <Button type="button" onClick={() => setCurrentStep(prev => Math.min(prev + 1, 3))}>Siguiente</Button>
-  if (currentStep === 3) {
-    nextButton = <Button type="submit">Generar Mensaje</Button>
-  }
-    return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+  return (
+    <div>
       <Progress value={(currentStep / 3) * 100} className="w-full" />
       <LoadPreviousMessage currentStep={currentStep} weekData={weekData} setWeekData={setWeekData} />
       {renderStep()}
       <div className="flex justify-between mt-4">
-        <Button
-          type="button"
-          onClick={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
-          disabled={currentStep === 1}
-        >
+        <Button type="button" onClick={handlePrevious} disabled={currentStep === 1}>
           Anterior
         </Button>
-        {nextButton}
+        <Button type="button" onClick={handleNext}>{currentStep < totalSteps ? "Siguiente" : "Generar Mensaje"}</Button>
       </div>
-    </form>
+    </div>
   )
 }
