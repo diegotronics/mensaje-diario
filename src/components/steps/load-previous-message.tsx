@@ -56,6 +56,7 @@ export default function LoadPreviousMessage({currentStep, weekData, setWeekData}
     if (currentStep !== 1) return null
 
     return (
+      <div className='my-6'>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
             <Button variant="outline" className="w-full">Cargar Mensaje Anterior (Opcional)</Button>
@@ -78,5 +79,6 @@ export default function LoadPreviousMessage({currentStep, weekData, setWeekData}
             </div>
             </DialogContent>
         </Dialog>
+      </div>
     )
 }
