@@ -35,7 +35,7 @@ export default function Step3({ weekData,  handleInputChange, setWeekData }: Ste
             <div key={index} className="flex items-center space-x-2 mt-2">
               <Input
                 type="url"
-                value={tarjeta}
+                value={tarjeta || 'https://claritywave.atlassian.net/browse/'}
                 onChange={(e) => handleTarjetaChange(index, e.target.value)}
                 placeholder="https://claritywave.atlassian.net/browse/tarjeta"
               />
