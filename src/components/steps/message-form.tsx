@@ -61,29 +61,29 @@ export default function MessageForm( { setMessage, setActiveTab, tabsRef }: Mess
 
 
   return `
-    **Semana**
-    Iniciales: ${weekData.inicialesSemana}
-    Realizados: ${realizadosTotal}
-    Restantes: ${restantesSemana}
+**Semana**
+Iniciales: ${weekData.inicialesSemana}
+Realizados: ${realizadosTotal}
+Restantes: ${restantesSemana}
 
-    **Progreso semanal**
-    Realizados: ${Object.entries(weekData.dias).map(([day, data]) => `${parseNumber(data.realizados)} (${day})`).join(' ')} Total: ${realizadosTotal}
-    Promedio realizado: ${promedioRealizado.toFixed(2)}
-    Invertidos: ${Object.entries(weekData.dias).map(([day, data]) => `${parseNumber(data.invertidos)} (${day})`).join(' ')} Total: ${invertidosTotal}
-    Promedio acumulados: ${promedioAcumulado.toFixed(2)}
+**Progreso semanal**
+Realizados: ${Object.entries(weekData.dias).map(([day, data]) => `${parseNumber(data.realizados)} (${day})`).join(' ')} Total: ${realizadosTotal}
+Promedio realizado: ${promedioRealizado.toFixed(2)}
+Invertidos: ${Object.entries(weekData.dias).map(([day, data]) => `${parseNumber(data.invertidos)} (${day})`).join(' ')} Total: ${invertidosTotal}
+Promedio acumulados: ${promedioAcumulado.toFixed(2)}
 
-    **Inversión en tiempo dedicado**
-    Reunión: ${weekData.tiempoReunion}
-    Tarjetas: ${weekData.tiempoTarjetas}
-    Code-Review: ${weekData.tiempoCodeReview}
-    Puntos Totales del Día: ${puntosTotalesDia}
+**Inversión en tiempo dedicado**
+Reunión: ${weekData.tiempoReunion}
+Tarjetas: ${weekData.tiempoTarjetas}
+Code-Review: ${weekData.tiempoCodeReview}
+Puntos Totales del Día: ${puntosTotalesDia}
 
-    **Tarjetas**
-    ${weekData.tarjetas.filter(t => t).join('\n')}
+**Tarjetas**
+${weekData.tarjetas.filter(t => t).join('\n')}
 
-    **Retrospectiva**
-    ${weekData.retrospectiva}
-  `
+**Retrospectiva**
+${weekData.retrospectiva}
+`
   }
 
   const handleNext = () => {
@@ -120,7 +120,7 @@ export default function MessageForm( { setMessage, setActiveTab, tabsRef }: Mess
 
   return (
     <div>
-      <Progress value={(currentStep / 3) * 100} className="w-full" />
+      <Progress value={(currentStep / 3) * 100} className="w-full [&>div]:bg-green-500" />
       <LoadPreviousMessage currentStep={currentStep} weekData={weekData} setWeekData={setWeekData} />
       {renderStep()}
       <div className="flex justify-between mt-4">

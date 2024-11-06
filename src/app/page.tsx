@@ -23,12 +23,12 @@ export default function HomePage() {
         </CardHeader>
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab} ref={tabsRef}>
-            <TabsList className="grid w-full grid-cols-2">
+            <TabsList className="grid w-full grid-cols-2 mb-4">
               <TabsTrigger value="form">Formulario</TabsTrigger>
               <TabsTrigger value="generated">Mensaje Generado</TabsTrigger>
             </TabsList>
             <TabsContent value="form">
-              <MessageForm  setMessage={setMessage} setActiveTab={setActiveTab} tabsRef={tabsRef} />
+              <MessageForm setMessage={setMessage} setActiveTab={setActiveTab} tabsRef={tabsRef} />
             </TabsContent>
             <TabsContent value="generated">
               <MessageGenerated message={message} />
